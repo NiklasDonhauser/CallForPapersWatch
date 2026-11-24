@@ -1,0 +1,174 @@
+[
+  {
+    "acronym": "ACL 2026",
+    "name": "Annual Meeting of the Association for Computational Linguistics",
+    "location": "Vienna, Austria",
+    "category": "nlp",
+    "website": "https://www.2026.aclweb.org",
+    "dates": {
+      "fullPaperDeadline": "2026-02-15T23:59:00-12:00",
+      "conferenceStart": "2026-07-05",
+      "conferenceEnd": "2026-07-10"
+    },
+    "source": "https://www.2026.aclweb.org/calls/main_conference",
+    "infoAsOf": "2025-11-24"
+  },
+  {
+    "acronym": "EMNLP 2026",
+    "name": "Empirical Methods in Natural Language Processing",
+    "location": "Barcelona, Spain",
+    "category": "nlp",
+    "website": "https://2026.emnlp.org",
+    "dates": {
+      "fullPaperDeadline": "2026-05-18T23:59:00-12:00",
+      "conferenceStart": "2026-11-08",
+      "conferenceEnd": "2026-11-14"
+    },
+    "source": "https://2026.emnlp.org/calls/main_conference",
+    "infoAsOf": "2025-11-24"
+  },
+  {
+    "acronym": "NAACL 2026",
+    "name": "North American Chapter of the ACL",
+    "location": "Albuquerque, USA",
+    "category": "nlp",
+    "website": "https://2026.naacl.org",
+    "dates": {
+      "fullPaperDeadline": "2026-01-11T23:59:00-12:00",
+      "conferenceStart": "2026-06-01",
+      "conferenceEnd": "2026-06-06"
+    },
+    "source": "https://2026.naacl.org/calls",
+    "infoAsOf": "2025-11-24"
+  },
+  {
+    "acronym": "EACL 2026",
+    "name": "European Chapter of the ACL",
+    "location": "Rabat, Morocco",
+    "category": "nlp",
+    "website": "https://2026.eacl.org",
+    "dates": {
+      "fullPaperDeadline": "2025-10-06T23:59:00-12:00",
+      "conferenceStart": "2026-03-17",
+      "conferenceEnd": "2026-03-22"
+    },
+    "source": "https://2026.eacl.org/calls",
+    "infoAsOf": "2025-11-24"
+  },
+  {
+    "acronym": "COLING 2026",
+    "name": "International Conference on Computational Linguistics",
+    "location": "Montpellier, France",
+    "category": "nlp",
+    "website": "https://coling2026.org",
+    "dates": {
+      "fullPaperDeadline": "2025-09-08T23:59:00-12:00",
+      "conferenceStart": "2026-01-11",
+      "conferenceEnd": "2026-01-16"
+    },
+    "source": "https://coling2026.org/calls",
+    "infoAsOf": "2025-11-24"
+  },
+  {
+    "acronym": "CoNLL 2026",
+    "name": "Conference on Computational Natural Language Learning",
+    "location": "Co-located with ACL 2026",
+    "category": "nlp",
+    "website": "https://www.conll.org",
+    "dates": {
+      "fullPaperDeadline": "2026-04-03T23:59:00-12:00",
+      "conferenceStart": "2026-07-11",
+      "conferenceEnd": "2026-07-11"
+    },
+    "source": "https://www.conll.org/cfp",
+    "infoAsOf": "2025-11-24"
+  },
+  {
+    "acronym": "LREC 2026",
+    "name": "International Conference on Language Resources and Evaluation",
+    "location": "Palma de Mallorca, Spain",
+    "category": "nlp",
+    "website": "https://lrec2026.lrec-conf.org",
+    "dates": {
+      "fullPaperDeadline": "2026-01-19T23:59:00-12:00",
+      "conferenceStart": "2026-05-11",
+      "conferenceEnd": "2026-05-16"
+    },
+    "source": "https://lrec2026.lrec-conf.org/cfp",
+    "infoAsOf": "2025-11-24"
+  },
+  {
+    "acronym": "AACL 2026",
+    "name": "Asia-Pacific Chapter of the ACL",
+    "location": "Sydney, Australia",
+    "category": "nlp",
+    "website": "https://aacl2026.org",
+    "dates": {
+      "fullPaperDeadline": "2026-08-02T23:59:00-12:00",
+      "conferenceStart": "2026-12-01",
+      "conferenceEnd": "2026-12-05"
+    },
+    "source": "https://aacl2026.org/calls",
+    "infoAsOf": "2025-11-24"
+  },
+  {
+    "acronym": "NeurIPS 2026",
+    "name": "Advances in Neural Information Processing Systems",
+    "location": "San Diego, USA",
+    "category": "ml",
+    "website": "https://neurips.cc",
+    "dates": {
+      "abstractDeadline": "2026-05-14T23:59:00-12:00",
+      "fullPaperDeadline": "2026-05-21T23:59:00-12:00",
+      "conferenceStart": "2026-12-06",
+      "conferenceEnd": "2026-12-12"
+    },
+    "source": "https://neurips.cc/Conferences/2026/CallForPapers",
+    "infoAsOf": "2025-11-24"
+  },
+  {
+    "acronym": "ICML 2026",
+    "name": "International Conference on Machine Learning",
+    "location": "Seoul, South Korea",
+    "category": "ml",
+    "website": "https://icml.cc",
+    "dates": {
+      "abstractDeadline": "2026-01-29T23:59:00-12:00",
+      "fullPaperDeadline": "2026-02-05T23:59:00-12:00",
+      "conferenceStart": "2026-07-13",
+      "conferenceEnd": "2026-07-19"
+    },
+    "source": "https://icml.cc/Conferences/2026/CallForPapers",
+    "infoAsOf": "2025-11-24"
+  },
+  {
+    "acronym": "ICLR 2026",
+    "name": "International Conference on Learning Representations",
+    "location": "Rio de Janeiro, Brazil",
+    "category": "ml",
+    "website": "https://iclr.cc",
+    "dates": {
+      "abstractDeadline": "2025-09-19T23:59:00-12:00",
+      "fullPaperDeadline": "2025-09-24T23:59:00-12:00",
+      "conferenceStart": "2026-04-26",
+      "conferenceEnd": "2026-05-01"
+    },
+    "source": "https://iclr.cc/Conferences/2026/CallForPapers",
+    "infoAsOf": "2025-11-24"
+  },
+  {
+    "acronym": "AAAI 2026",
+    "name": "AAAI Conference on Artificial Intelligence",
+    "location": "Singapore",
+    "category": "ml",
+    "website": "https://aaai.org/conference/aaai",
+    "dates": {
+      "abstractDeadline": "2025-08-01T23:59:00-12:00",
+      "fullPaperDeadline": "2025-08-08T23:59:00-12:00",
+      "conferenceStart": "2026-01-20",
+      "conferenceEnd": "2026-01-27"
+    },
+    "source": "https://aaai.org/conference/aaai/aaai-26-main-technical-track-call/",
+    "infoAsOf": "2025-11-24"
+  }
+]
