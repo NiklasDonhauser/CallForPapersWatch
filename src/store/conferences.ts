@@ -125,6 +125,22 @@ export function importEntries(items: Conference[]): number {
   return affected
 }
 
+/** Update only the user note of an entry (own or default) without touching its data/infoAsOf */
+export function setUserNote(entry: Conference, userNote: string | undefined): void {
+  if (entry.own && entry.id) {
+    ownEntries.value = ownEntries.value.map((e) => (e.id === entry.id ? { ...e, userNote } : e))
+    persist()
+    return
+  }
+  const existing = overrides.value[entry.acronym]
+  const base = existing ?? ({ ...entry, own: undefined, id: undefined, edited: undefined } as Omit<Conference, 'infoAsOf'>)
+  overrides.value = {
+    ...overrides.value,
+    [entry.acronym]: { ...base, userNote, infoAsOf: existing?.infoAsOf ?? entry.infoAsOf },
+  }
+  persistOverrides()
+}
+
 /** All conferences shown: repo defaults (with local overrides) merged with the user's own entries. */
 export const allConferences = computed<Conference[]>(() => [
   ...(defaultConferences as Conference[]).map((c) =>

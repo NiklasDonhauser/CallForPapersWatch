@@ -22,6 +22,8 @@ export const de: typeof en = {
   entryNote: 'Notizen (max. 200 Wörter)',
   wordCounter: '{n} / 200 Wörter',
   noteTooLong: 'Die Notiz überschreitet 200 Wörter.',
+  notePlaceholder: 'Notiz hinzufügen …',
+  noteSaved: 'Gespeichert ✓',
   requiredHint: 'Kürzel und mindestens ein Datum sind nötig.',
   localTimeNote: 'Eingetragene Deadlines werden in deiner lokalen Zeitzone interpretiert (Standard-Einträge nutzen AoE, UTC-12).',
   deleteConfirm: 'Diesen Eintrag löschen?',

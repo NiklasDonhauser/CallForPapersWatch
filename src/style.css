@@ -447,6 +447,54 @@ body {
   flex: 1;
 }
 
+.note-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.note-editor textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.4rem 0.55rem;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: var(--bg);
+  resize: vertical;
+  max-height: 9rem;
+  overflow-y: auto;
+}
+
+.note-editor textarea:focus {
+  outline: 1px solid var(--accent);
+}
+
+.note-editor .word-counter {
+  align-self: flex-end;
+}
+
+.note-saved {
+  align-self: flex-end;
+  color: var(--running-fg);
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--running-bg);
+  border-radius: 6px;
+  padding: 0.1rem 0.4rem;
+}
+
+.note-enter-active,
+.note-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.note-enter-from,
+.note-leave-to {
+  opacity: 0;
+}
+
 .user-note {
   margin: 0;
   padding: 0.45rem 0.6rem;

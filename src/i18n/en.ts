@@ -19,6 +19,8 @@ export const en = {
   entryNote: 'Notes (max. 200 words)',
   wordCounter: '{n} / 200 words',
   noteTooLong: 'The note exceeds 200 words.',
+  notePlaceholder: 'Add a note …',
+  noteSaved: 'Saved ✓',
   requiredHint: 'Acronym and at least one date are required.',
   localTimeNote: 'Deadlines you enter are interpreted in your local timezone (defaults use AoE, UTC-12).',
   deleteConfirm: 'Delete this entry?',

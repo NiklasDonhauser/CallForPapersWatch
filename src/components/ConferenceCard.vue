@@ -10,8 +10,9 @@
     </header>
     <p class="full-name">{{ conference.name }}</p>
     <p v-if="conference.note" class="note">{{ conference.note }}</p>
-    <blockquote v-if="conference.userNote" class="user-note">{{ conference.userNote }}</blockquote>
+
     <CountdownTimer v-if="conference.dates" :conference="conference" />
+
     <p class="meta"><strong>{{ t('location') }}:</strong> {{ conference.location }}</p>
     <p v-if="conference.dates.abstractDeadline" class="meta">
       <strong>{{ t('abstractDeadline') }}:</strong> {{ fmt(conference.dates.abstractDeadline!) }}
@@ -37,6 +38,7 @@
         <button v-if="conference.own" type="button" class="danger" @click="$emit('remove', conference)">{{ t('remove') }}</button>
       </span>
     </footer>
+    <NoteEditor :conference="conference" />
   </article>
 </template>
 
@@ -46,6 +48,7 @@ import type { Conference } from '../types'
 import { t, locale } from '../i18n'
 import { isStale } from '../utils/dates'
 import CountdownTimer from './CountdownTimer.vue'
+import NoteEditor from './NoteEditor.vue'
 
 const props = defineProps<{ conference: Conference }>()
 defineEmits<{ edit: [conference: Conference]; remove: [conference: Conference]; reset: [conference: Conference] }>()
