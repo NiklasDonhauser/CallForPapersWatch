@@ -54,7 +54,7 @@ npm run build      # type-checks with vue-tsc, then builds to dist/
 npm run preview
 ```
 
-Requires Node ≥ 16.18 (Vite 4; upgrade to Node LTS and modern Vite versions without code changes). Local dev serves the site under `/CallForPapersWatch/` — same as on GitHub Pages.
+Requires Node ≥ 20 (build tested with Node 26, npm 11; Vite 8, Vue 3.5, TypeScript 6, vue-tsc 3). Local dev serves the site under `/CallForPapersWatch/` — same as on GitHub Pages.
 
 **Stack:** Vue 3 SFCs + TypeScript, Vite, no UI framework, no backend. State lives in plain reactive modules (`src/store/`), all UI strings in `src/i18n/{en,de}.ts`.
 
