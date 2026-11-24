@@ -40,7 +40,7 @@ export function parseEntries(raw: string): Conference[] {
     source: typeof e.source === 'string' ? e.source : undefined,
     infoAsOf: typeof e.infoAsOf === 'string' ? e.infoAsOf : today,
     id: typeof e.id === 'string' ? e.id : `${Date.now()}-${i}`,
-    own: true,
+    own: e.own === true,
   }))
 }
 

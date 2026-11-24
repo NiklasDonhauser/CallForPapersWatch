@@ -49,18 +49,6 @@ export function removeOwnEntry(id: string): void {
   persist()
 }
 
-/** Merge imported entries by id (update existing, append new); returns affected count */
-export function importOwnEntries(entries: Conference[]): number {
-  const byId = new Map(ownEntries.value.map((e) => [e.id as string, e]))
-  for (const entry of entries) {
-    const key = entry.id ?? crypto.randomUUID()
-    byId.set(key, { ...entry, id: key })
-  }
-  ownEntries.value = [...byId.values()]
-  persist()
-  return entries.length
-}
-
 const OVERRIDES_KEY = 'cfpw:overrides'
 
 /** Local, persisted corrections/edits of the repo default entries, keyed by acronym */
@@ -100,6 +88,41 @@ export function removeOverride(acronym: string): void {
   delete next[acronym]
   overrides.value = next
   persistOverrides()
+}
+
+/** Everything a user changed locally: own entries plus overrides of defaults */
+export function exportEntries(): Conference[] {
+  return [...ownEntries.value, ...Object.values(overrides.value)]
+}
+
+/**
+ * Apply an exported/shared list: items carrying own:true are merged into the
+ * own entries (by id); modified defaults are saved as overrides (by acronym),
+ * unknown non-own entries are added as own entries.
+ */
+export function importEntries(items: Conference[]): number {
+  const defaultAcronyms = new Set((defaultConferences as Conference[]).map((c) => c.acronym))
+  let affected = 0
+
+  const byId = new Map(ownEntries.value.map((e) => [e.id as string, e]))
+  for (const item of items) {
+    affected++
+    if (item.own) {
+      const key = item.id ?? crypto.randomUUID()
+      byId.set(key, { ...item, id: key })
+      continue
+    }
+    if (defaultAcronyms.has(item.acronym)) {
+      const { id, own, ...draft } = item
+      saveOverride(item.acronym, draft)
+    } else {
+      const key = item.id ?? crypto.randomUUID()
+      byId.set(key, { ...item, id: key, own: true })
+    }
+  }
+  ownEntries.value = [...byId.values()]
+  persist()
+  return affected
 }
 
 /** All conferences shown: repo defaults (with local overrides) merged with the user's own entries. */

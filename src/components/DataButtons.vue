@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { ownEntries, importOwnEntries } from '../store/conferences'
+import { exportEntries, importEntries } from '../store/conferences'
 import type { Conference } from '../types'
 import { t } from '../i18n'
 import { buildShareLink, decodeEntries, downloadEntries, parseEntries } from '../utils/transfer'
@@ -36,7 +36,7 @@ function showToast(message: string, isError = false): void {
 }
 
 function onExport(): void {
-  downloadEntries(ownEntries.value)
+  downloadEntries(exportEntries())
 }
 
 async function onFile(event: Event): Promise<void> {
@@ -46,7 +46,7 @@ async function onFile(event: Event): Promise<void> {
   if (!file) return
   try {
     const entries = parseEntries(await file.text()) as Conference[]
-    importOwnEntries(entries)
+    importEntries(entries)
     showToast(t('importOk'))
   } catch {
     showToast(t('importInvalid'), true)
@@ -54,8 +54,8 @@ async function onFile(event: Event): Promise<void> {
 }
 
 async function onShare(): Promise<void> {
-  if (!ownEntries.value.length) return
-  const link = buildShareLink(ownEntries.value)
+  if (!exportEntries().length) return
+  const link = buildShareLink(exportEntries())
   try {
     await navigator.clipboard.writeText(link)
     showToast(t('copyOk'))
@@ -75,7 +75,7 @@ function tryImportFromHash(): number | null {
       window.history.replaceState(null, '', window.location.pathname)
       return null
     }
-    const count = importOwnEntries(entries)
+    const count = importEntries(entries)
     window.history.replaceState(null, '', window.location.pathname)
     return count
   } catch {
