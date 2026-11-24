@@ -447,6 +447,35 @@ body {
   flex: 1;
 }
 
+.user-note {
+  margin: 0;
+  padding: 0.45rem 0.6rem;
+  border-left: 3px solid var(--accent);
+  background: var(--countdown-bg);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.85rem;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  max-height: 9rem;
+  overflow-y: auto;
+}
+
+.word-counter {
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.word-counter.over {
+  color: var(--danger-hover-fg);
+  font-weight: 700;
+}
+
+.modal textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+
 .form-error {
   margin: 0;
   color: var(--danger-hover-fg);

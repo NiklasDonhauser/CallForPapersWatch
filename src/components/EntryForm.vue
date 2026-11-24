@@ -50,6 +50,11 @@
         {{ t('entrySource') }}
         <input v-model="draft.source" type="url" />
       </label>
+      <label>
+        {{ t('entryNote') }}
+        <textarea v-model="draft.userNote" rows="3" maxlength="2000"></textarea>
+        <span class="word-counter" :class="{ over: words > 200 }">{{ counterText }}</span>
+      </label>
 
       <p v-if="error" class="form-error">{{ error }}</p>
       <p class="form-note">{{ t('localTimeNote') }}</p>
@@ -63,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import type { Conference, ConferenceDates, ResultDraft } from '../types'
 import { t } from '../i18n'
 
@@ -81,6 +86,7 @@ interface FormDraft {
   conferenceEnd: string
   website: string
   source: string
+  userNote: string
 }
 
 function blank(): FormDraft {
@@ -95,6 +101,7 @@ function blank(): FormDraft {
     conferenceEnd: '',
     website: '',
     source: '',
+    userNote: '',
   }
 }
 
@@ -113,6 +120,7 @@ function fromEntry(c: Conference): FormDraft {
     conferenceEnd: d.conferenceEnd ?? '',
     website: c.website,
     source: c.source ?? '',
+    userNote: c.userNote ?? '',
   }
 }
 
@@ -124,6 +132,15 @@ function toLocalInput(iso?: string): string {
 
 const error = ref('')
 
+const words = computed(() => countWords(draft.userNote))
+
+const counterText = computed(() => t('wordCounter').replace('{n}', String(words.value)))
+
+function countWords(text: string | undefined): number {
+  if (!text) return 0
+  return text.trim().split(/\s+/).filter(Boolean).length
+}
+
 function save(): void {
   if (!draft.acronym.trim()) {
     error.value = t('requiredHint')
@@ -131,6 +148,10 @@ function save(): void {
   }
   if (!draft.abstractDeadline && !draft.fullPaperDeadline && !draft.conferenceStart) {
     error.value = t('requiredHint')
+    return
+  }
+  if (words.value > 200) {
+    error.value = t('noteTooLong')
     return
   }
   const dates: ConferenceDates = {
@@ -153,6 +174,7 @@ function save(): void {
       dates,
       website: draft.website.trim(),
       source: draft.source.trim() || undefined,
+      userNote: draft.userNote.trim() || undefined,
     },
     props.editing?.id,
   )

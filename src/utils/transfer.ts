@@ -39,6 +39,8 @@ export function parseEntries(raw: string): Conference[] {
     dates: typeof e.dates === 'object' && e.dates ? e.dates : {},
     source: typeof e.source === 'string' ? e.source : undefined,
     infoAsOf: typeof e.infoAsOf === 'string' ? e.infoAsOf : today,
+    note: typeof e.note === 'string' ? e.note : undefined,
+    userNote: typeof e.userNote === 'string' ? e.userNote : undefined,
     id: typeof e.id === 'string' ? e.id : `${Date.now()}-${i}`,
     own: e.own === true,
   }))

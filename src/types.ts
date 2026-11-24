@@ -23,6 +23,8 @@ export interface Conference {
   infoAsOf: string
   /** Caveat shown under the title, e.g. "projected dates" */
   note?: string
+  /** Free-text user note, limited to 200 words */
+  userNote?: string
   /** true for user-created entries (localStorage) */
   own?: boolean
   /** transient flag: default entry with a local override applied */
@@ -38,4 +40,5 @@ export interface ResultDraft {
   dates: ConferenceDates
   website: string
   source: string | undefined
+  userNote: string | undefined
 }
