@@ -9,6 +9,8 @@ export interface ConferenceDates {
 }
 
 export interface Conference {
+  /** stable id for user-created entries */
+  id?: string
   acronym: string
   name: string
   location: string
@@ -21,4 +23,15 @@ export interface Conference {
   infoAsOf: string
   /** true for user-created entries (localStorage) */
   own?: boolean
+}
+
+/** Draft emitted by the entry form */
+export interface ResultDraft {
+  acronym: string
+  name: string
+  location: string
+  category: Category
+  dates: ConferenceDates
+  website: string
+  source: string | undefined
 }

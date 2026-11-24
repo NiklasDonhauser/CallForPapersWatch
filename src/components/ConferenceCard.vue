@@ -23,6 +23,10 @@
     <footer class="card-footer">
       <a :href="conference.website" target="_blank" rel="noopener">{{ t('website') }}</a>
       <a v-if="conference.source" :href="conference.source" target="_blank" rel="noopener">CFP ↗</a>
+      <span v-if="conference.own" class="card-actions">
+        <button type="button" @click="$emit('edit', conference)">{{ t('edit') }}</button>
+        <button type="button" class="danger" @click="$emit('remove', conference)">{{ t('remove') }}</button>
+      </span>
     </footer>
   </article>
 </template>
@@ -35,6 +39,7 @@ import { isStale } from '../utils/dates'
 import CountdownTimer from './CountdownTimer.vue'
 
 const props = defineProps<{ conference: Conference }>()
+defineEmits<{ edit: [conference: Conference]; remove: [conference: Conference] }>()
 
 const dateFmt = computed(
   () =>
