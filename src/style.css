@@ -346,6 +346,59 @@ body {
   font-weight: 600;
 }
 
+.data-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+}
+
+.data-buttons > button {
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.data-buttons > button:hover {
+  border-color: var(--accent);
+}
+
+.hidden-input {
+  display: none;
+}
+
+.toast {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: #1c2333;
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.toast.error {
+  background: #a02020;
+}
+
+.toast-enter-active,
+.toast-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.toast-enter-from,
+.toast-leave-to {
+  opacity: 0;
+}
+
 .site-footer {
   margin-top: 2rem;
   color: var(--muted);

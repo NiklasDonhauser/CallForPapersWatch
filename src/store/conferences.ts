@@ -49,6 +49,18 @@ export function removeOwnEntry(id: string): void {
   persist()
 }
 
+/** Merge imported entries by id (update existing, append new); returns affected count */
+export function importOwnEntries(entries: Conference[]): number {
+  const byId = new Map(ownEntries.value.map((e) => [e.id as string, e]))
+  for (const entry of entries) {
+    const key = entry.id ?? crypto.randomUUID()
+    byId.set(key, { ...entry, id: key })
+  }
+  ownEntries.value = [...byId.values()]
+  persist()
+  return entries.length
+}
+
 /** All conferences shown: repo defaults merged with the user's own entries. */
 export const allConferences = computed<Conference[]>(() => [
   ...(defaultConferences as Conference[]),

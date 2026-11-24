@@ -7,6 +7,7 @@
       </div>
       <div class="header-actions">
         <button type="button" class="primary-btn" @click="openAdd">+ {{ t('addEntry') }}</button>
+        <DataButtons />
         <LanguageSwitcher />
       </div>
     </header>
@@ -39,6 +40,7 @@ import { addOwnEntry, updateOwnEntry, removeOwnEntry, allConferences } from './s
 import { compareConferences } from './utils/dates'
 import ConferenceCard from './components/ConferenceCard.vue'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
+import DataButtons from './components/DataButtons.vue'
 import EntryForm from './components/EntryForm.vue'
 import type { ResultDraft } from './types'
 
