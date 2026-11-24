@@ -25,6 +25,8 @@ export interface Conference {
   note?: string
   /** true for user-created entries (localStorage) */
   own?: boolean
+  /** transient flag: default entry with a local override applied */
+  edited?: boolean
 }
 
 /** Draft emitted by the entry form */

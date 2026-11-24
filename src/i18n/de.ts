@@ -62,4 +62,8 @@ export const de: typeof en = {
   tooltipStale: 'Informationen älter als sechs Monate – vorher auf der Konferenz-Website prüfen.',
   tooltipLang: 'Sprache der Oberfläche umschalten (wird gespeichert).',
   tooltipSearch: 'Nach Kürzel, Name oder Ort filtern.',
+  tooltipTheme: 'Zwischen hellem und dunklem Design umschalten (folgt standardmäßig der Systemeinstellung).',
+  editedEntry: 'Bearbeitet',
+  resetEntry: 'Auf Original zurücksetzen',
+  tooltipEdited: 'Von dir bearbeitet (lokal gespeichert). ↺ stellt die Originaldaten wieder her.',
 }

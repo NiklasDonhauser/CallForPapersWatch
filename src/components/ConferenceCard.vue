@@ -6,6 +6,7 @@
         {{ conference.category === 'nlp' ? 'NLP' : 'ML' }}
       </span>
       <span v-if="conference.own" class="badge own-badge" :title="t('tooltipOwn')">{{ t('ownEntry') }}</span>
+      <span v-else-if="conference.edited" class="badge own-badge" :title="t('tooltipEdited')">{{ t('editedEntry') }}</span>
     </header>
     <p class="full-name">{{ conference.name }}</p>
     <p v-if="conference.note" class="note">{{ conference.note }}</p>
@@ -24,9 +25,15 @@
     <footer class="card-footer">
       <a :href="conference.website" target="_blank" rel="noopener" :title="t('tooltipWebsite')">{{ t('website') }}</a>
       <a v-if="conference.source" :href="conference.source" target="_blank" rel="noopener" :title="t('tooltipCfp')">CFP ↗</a>
-      <span v-if="conference.own" class="card-actions">
+      <span class="card-actions">
+        <button
+          v-if="conference.edited"
+          type="button"
+          :title="t('tooltipEdited')"
+          @click="$emit('reset', conference)"
+        >↺</button>
         <button type="button" @click="$emit('edit', conference)">{{ t('edit') }}</button>
-        <button type="button" class="danger" @click="$emit('remove', conference)">{{ t('remove') }}</button>
+        <button v-if="conference.own" type="button" class="danger" @click="$emit('remove', conference)">{{ t('remove') }}</button>
       </span>
     </footer>
   </article>
@@ -40,7 +47,7 @@ import { isStale } from '../utils/dates'
 import CountdownTimer from './CountdownTimer.vue'
 
 const props = defineProps<{ conference: Conference }>()
-defineEmits<{ edit: [conference: Conference]; remove: [conference: Conference] }>()
+defineEmits<{ edit: [conference: Conference]; remove: [conference: Conference]; reset: [conference: Conference] }>()
 
 const dateFmt = computed(
   () =>

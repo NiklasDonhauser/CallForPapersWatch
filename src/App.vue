@@ -8,6 +8,7 @@
       <div class="header-actions">
         <button type="button" class="primary-btn" :title="t('tooltipAdd')" @click="openAdd">+ {{ t('addEntry') }}</button>
         <DataButtons />
+        <ThemeToggle />
         <LanguageSwitcher />
       </div>
     </header>
@@ -34,6 +35,7 @@
         :conference="c"
         @edit="openEdit"
         @remove="askRemove"
+        @reset="askReset"
       />
       <p v-if="!conferences.length" class="empty">{{ t('searchPlaceholder') }}</p>
     </main>
@@ -50,11 +52,12 @@
 import { computed, ref } from 'vue'
 import { t } from './i18n'
 import type { Conference } from './types'
-import { addOwnEntry, updateOwnEntry, removeOwnEntry, allConferences } from './store/conferences'
+import { addOwnEntry, updateOwnEntry, removeOwnEntry, saveOverride, removeOverride, allConferences } from './store/conferences'
 import { compareConferences } from './utils/dates'
 import ConferenceCard from './components/ConferenceCard.vue'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import DataButtons from './components/DataButtons.vue'
+import ThemeToggle from './components/ThemeToggle.vue'
 import EntryForm from './components/EntryForm.vue'
 import type { ResultDraft } from './types'
 
@@ -72,13 +75,18 @@ function openEdit(conference: Conference): void {
 }
 
 function handleSave(draft: ResultDraft, id?: string): void {
-  if (id) updateOwnEntry(id, draft)
+  if (id && editing.value?.own) updateOwnEntry(id, draft)
+  else if (editing.value) saveOverride(editing.value.acronym, draft)
   else addOwnEntry(draft)
   showForm.value = false
 }
 
 function askRemove(conference: Conference): void {
   if (conference.id && window.confirm(t('deleteConfirm'))) removeOwnEntry(conference.id)
+}
+
+function askReset(conference: Conference): void {
+  if (window.confirm(t('resetEntry'))) removeOverride(conference.acronym)
 }
 
 const conferences = computed(() =>

@@ -59,4 +59,8 @@ export const en = {
   tooltipStale: 'Information older than six months – verify on the conference website before relying on it.',
   tooltipLang: 'Switch the interface language (saved in your browser).',
   tooltipSearch: 'Filter by acronym, name or location.',
+  tooltipTheme: 'Switch between light and dark theme (follows your system setting by default).',
+  editedEntry: 'Edited',
+  resetEntry: 'Reset to original',
+  tooltipEdited: 'Edited by you (stored locally). The ↺ button restores the original data.',
 }

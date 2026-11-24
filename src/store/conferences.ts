@@ -61,8 +61,51 @@ export function importOwnEntries(entries: Conference[]): number {
   return entries.length
 }
 
-/** All conferences shown: repo defaults merged with the user's own entries. */
+const OVERRIDES_KEY = 'cfpw:overrides'
+
+/** Local, persisted corrections/edits of the repo default entries, keyed by acronym */
+export const overrides = ref<Record<string, Conference>>(loadOverrides())
+
+function loadOverrides(): Record<string, Conference> {
+  try {
+    const raw = localStorage.getItem(OVERRIDES_KEY)
+    if (!raw) return {}
+    const parsed = JSON.parse(raw)
+    return parsed && typeof parsed === 'object' ? (parsed as Record<string, Conference>) : {}
+  } catch {
+    return {}
+  }
+}
+
+function persistOverrides(): void {
+  try {
+    localStorage.setItem(OVERRIDES_KEY, JSON.stringify(overrides.value))
+  } catch {
+    /* localStorage unavailable */
+  }
+}
+
+/** Persist a user's manual correction of a default entry */
+export function saveOverride(acronym: string, draft: Omit<Conference, 'own' | 'infoAsOf' | 'id'>): void {
+  overrides.value = { ...overrides.value, [acronym]: { ...draft, infoAsOf: today() } }
+  persistOverrides()
+}
+
+export function hasOverride(acronym: string): boolean {
+  return overrides.value[acronym] !== undefined
+}
+
+export function removeOverride(acronym: string): void {
+  const next = { ...overrides.value }
+  delete next[acronym]
+  overrides.value = next
+  persistOverrides()
+}
+
+/** All conferences shown: repo defaults (with local overrides) merged with the user's own entries. */
 export const allConferences = computed<Conference[]>(() => [
-  ...(defaultConferences as Conference[]),
+  ...(defaultConferences as Conference[]).map((c) =>
+    overrides.value[c.acronym] ? { ...c, ...overrides.value[c.acronym], edited: true } : c,
+  ),
   ...ownEntries.value,
 ])

@@ -8,6 +8,13 @@
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%A3%3C/text%3E%3C/svg%3E"
     />
     <title>Call for Papers Watch</title>
+    <script>
+      try {
+        var s = localStorage.getItem('cfpw:theme')
+        document.documentElement.dataset.theme =
+          s === 'dark' || s === 'light' ? s : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="app"></div>
