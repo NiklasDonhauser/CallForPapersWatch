@@ -27,6 +27,9 @@ import type { Conference } from './types'
 import ConferenceCard from './components/ConferenceCard.vue'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import defaultConferences from './data/conferences.json'
+import { compareConferences } from './utils/dates'
 
-const conferences = computed(() => defaultConferences as Conference[])
+const conferences = computed(() =>
+  [...(defaultConferences as Conference[])].sort((a, b) => compareConferences(a, b)),
+)
 </script>

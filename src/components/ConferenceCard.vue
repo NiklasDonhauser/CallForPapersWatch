@@ -8,6 +8,7 @@
       <span v-if="conference.own" class="badge own-badge">{{ t('ownEntry') }}</span>
     </header>
     <p class="full-name">{{ conference.name }}</p>
+    <CountdownTimer v-if="conference.dates" :conference="conference" />
     <p class="meta"><strong>{{ t('location') }}:</strong> {{ conference.location }}</p>
     <p v-if="conference.dates.abstractDeadline" class="meta">
       <strong>{{ t('abstractDeadline') }}:</strong> {{ fmt(conference.dates.abstractDeadline!) }}
@@ -16,8 +17,8 @@
       <strong>{{ t('fullPaperDeadline') }}:</strong> {{ fmt(conference.dates.fullPaperDeadline!) }}
     </p>
     <p v-if="dateRange" class="meta"><strong>{{ t('conferenceDates') }}:</strong> {{ dateRange }}</p>
-    <p class="meta info-as-of">
-      <strong>{{ t('infoAsOf') }}:</strong> {{ conference.infoAsOf }}
+    <p class="meta info-as-of" :class="{ stale: stale }">
+      <strong>{{ t('infoAsOf') }}:</strong> {{ conference.infoAsOf }}<template v-if="stale"> ⚠</template>
     </p>
     <footer class="card-footer">
       <a :href="conference.website" target="_blank" rel="noopener">{{ t('website') }}</a>
@@ -30,6 +31,8 @@
 import { computed } from 'vue'
 import type { Conference } from '../types'
 import { t, locale } from '../i18n'
+import { isStale } from '../utils/dates'
+import CountdownTimer from './CountdownTimer.vue'
 
 const props = defineProps<{ conference: Conference }>()
 
@@ -53,4 +56,6 @@ const dateRange = computed(() => {
   }
   return conferenceStart ? fmt(conferenceStart) : null
 })
+
+const stale = computed(() => isStale(props.conference))
 </script>
