@@ -1,6 +1,6 @@
 import type { Conference } from '../types'
 
-export type DeadlineStatus = 'countdown' | 'passed' | 'running' | 'ended'
+export type DeadlineStatus = 'countdown' | 'passed' | 'running' | 'ended' | 'tba'
 
 export interface DeadlineInfo {
   /** ISO datetime of the next relevant date (abstract → paper → conference start) */
@@ -10,6 +10,9 @@ export interface DeadlineInfo {
 
 export function getDeadlineInfo(conference: Conference, now: Date = new Date()): DeadlineInfo {
   const dates = conference.dates
+  const hasAnyDate =
+    dates.abstractDeadline || dates.fullPaperDeadline || dates.conferenceStart || dates.conferenceEnd
+  if (!hasAnyDate) return { status: 'tba' }
   const target = dates.abstractDeadline ?? dates.fullPaperDeadline ?? dates.conferenceStart
 
   if (target) {
@@ -31,7 +34,7 @@ export function getDeadlineInfo(conference: Conference, now: Date = new Date()):
 export function compareConferences(a: Conference, b: Conference, now: Date = new Date()): number {
   const infoA = getDeadlineInfo(a, now)
   const infoB = getDeadlineInfo(b, now)
-  const rank: Record<DeadlineStatus, number> = { countdown: 0, running: 1, passed: 2, ended: 2 }
+  const rank: Record<DeadlineStatus, number> = { countdown: 0, running: 1, passed: 2, ended: 2, tba: 3 }
   const diff = rank[infoA.status] - rank[infoB.status]
   if (diff !== 0) return diff
 

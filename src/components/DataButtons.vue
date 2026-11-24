@@ -1,8 +1,8 @@
 <template>
   <div class="data-buttons">
-    <button type="button" @click="onExport">{{ t('exportJson') }}</button>
-    <button type="button" @click="fileInput?.click()">{{ t('importJson') }}</button>
-    <button type="button" @click="onShare">{{ t('shareLink') }}</button>
+    <button type="button" :title="t('tooltipExport')" @click="onExport">{{ t('exportJson') }}</button>
+    <button type="button" :title="t('tooltipImport')" @click="fileInput?.click()">{{ t('importJson') }}</button>
+    <button type="button" :title="t('tooltipShare')" @click="onShare">{{ t('shareLink') }}</button>
     <input
       ref="fileInput"
       type="file"

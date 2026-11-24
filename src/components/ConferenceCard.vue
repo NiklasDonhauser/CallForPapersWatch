@@ -2,12 +2,13 @@
   <article class="card" :class="{ own: conference.own }">
     <header class="card-header">
       <h2>{{ conference.acronym }}</h2>
-      <span class="badge" :class="conference.category">
+      <span class="badge" :class="conference.category" :title="t('tooltipCategory')">
         {{ conference.category === 'nlp' ? 'NLP' : 'ML' }}
       </span>
-      <span v-if="conference.own" class="badge own-badge">{{ t('ownEntry') }}</span>
+      <span v-if="conference.own" class="badge own-badge" :title="t('tooltipOwn')">{{ t('ownEntry') }}</span>
     </header>
     <p class="full-name">{{ conference.name }}</p>
+    <p v-if="conference.note" class="note">{{ conference.note }}</p>
     <CountdownTimer v-if="conference.dates" :conference="conference" />
     <p class="meta"><strong>{{ t('location') }}:</strong> {{ conference.location }}</p>
     <p v-if="conference.dates.abstractDeadline" class="meta">
@@ -17,12 +18,12 @@
       <strong>{{ t('fullPaperDeadline') }}:</strong> {{ fmt(conference.dates.fullPaperDeadline!) }}
     </p>
     <p v-if="dateRange" class="meta"><strong>{{ t('conferenceDates') }}:</strong> {{ dateRange }}</p>
-    <p class="meta info-as-of" :class="{ stale: stale }">
+    <p class="meta info-as-of" :class="{ stale: stale }" :title="stale ? t('tooltipStale') : t('tooltipInfoAsOf')">
       <strong>{{ t('infoAsOf') }}:</strong> {{ conference.infoAsOf }}<template v-if="stale"> ⚠</template>
     </p>
     <footer class="card-footer">
-      <a :href="conference.website" target="_blank" rel="noopener">{{ t('website') }}</a>
-      <a v-if="conference.source" :href="conference.source" target="_blank" rel="noopener">CFP ↗</a>
+      <a :href="conference.website" target="_blank" rel="noopener" :title="t('tooltipWebsite')">{{ t('website') }}</a>
+      <a v-if="conference.source" :href="conference.source" target="_blank" rel="noopener" :title="t('tooltipCfp')">CFP ↗</a>
       <span v-if="conference.own" class="card-actions">
         <button type="button" @click="$emit('edit', conference)">{{ t('edit') }}</button>
         <button type="button" class="danger" @click="$emit('remove', conference)">{{ t('remove') }}</button>

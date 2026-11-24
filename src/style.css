@@ -72,6 +72,52 @@ body {
   font-size: 0.9rem;
 }
 
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0.25rem 0 1rem;
+  flex-wrap: wrap;
+}
+
+.filters {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.filters button {
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.filters button.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.search {
+  flex: 0 1 260px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font: inherit;
+  color: var(--text);
+}
+
+.empty {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  text-align: center;
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -132,6 +178,13 @@ body {
   margin: 0;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.note {
+  margin: 0;
+  color: #9a5b00;
+  font-size: 0.8rem;
+  font-style: italic;
 }
 
 .meta {

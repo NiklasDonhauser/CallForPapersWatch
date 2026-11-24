@@ -46,6 +46,7 @@ const statusText = computed(() => {
     passed: 'deadlinePassed',
     running: 'conferenceRunning',
     ended: 'conferenceEnded',
+    tba: 'conferenceTba',
   }
   return t(map[info.value.status])
 })

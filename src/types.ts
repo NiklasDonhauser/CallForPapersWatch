@@ -21,6 +21,8 @@ export interface Conference {
   source?: string
   /** Date the information was last checked, as YYYY-MM-DD */
   infoAsOf: string
+  /** Caveat shown under the title, e.g. "projected dates" */
+  note?: string
   /** true for user-created entries (localStorage) */
   own?: boolean
 }

@@ -26,4 +26,4 @@ GitHub Pages must be enabled once under **Settings → Pages → Source: GitHub 
 
 ## Status
 
-⚠ Dates in `src/data/conferences.json` are placeholders while the project is in milestone 1; they are verified against the official CFP pages later.
+Feature-complete for milestone 5: default set of 12 NLP/ML venues with researched deadlines (season 2026/27, `infoAsOf` per entry),_FILTERS/search, own entries, export/import and share links. Deadlines are checked against the official CFP pages; venues using ACL Rolling Review reference the ARR cycle deadline.
